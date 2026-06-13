@@ -168,20 +168,10 @@
     animation:fadeUp 1s ease forwards 0.5s;
   }
 
-  .drape img{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    z-index:0;
-  }
-
   .drape::before, .drape::after{
     content:'';
     position:absolute;
     inset:0;
-    z-index:1;
     background:repeating-linear-gradient(
       100deg,
       transparent 0px,
@@ -205,14 +195,11 @@
     position:absolute;
     bottom:16px;
     left:16px;
-    z-index:2;
     font-size:10px;
     letter-spacing:0.25em;
     text-transform:uppercase;
     color:var(--ink);
-    opacity:0.75;
-    background:rgba(248,246,242,0.85);
-    padding:4px 10px;
+    opacity:0.45;
   }
 
   .btn{
@@ -330,14 +317,6 @@
       rgba(28,27,25,0.04) 27px,
       transparent 28px
     );
-    pointer-events:none;
-  }
-
-  .swatch img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
   }
 
   .swatch-1{background:linear-gradient(135deg,#E3DED4,#CFC6B6);}
@@ -550,7 +529,6 @@
     <p>Legzeri designs considered essentials — cut for movement, sourced with care, and built to be worn long after the season ends.</p>
 
     <div class="drape">
-      <img src="https://placehold.co/680x440/D8D2C7/1C1B19?font=playfair-display&text=Legzeri+%E2%80%94+Fall+Capsule" alt="Legzeri Fall Capsule preview" loading="lazy">
       <div class="drape-label">The Fall Capsule — 06 Pieces</div>
     </div>
 
@@ -585,7 +563,7 @@
   </div>
   <div class="grid">
     <div class="card">
-      <div class="swatch swatch-1"><img src="https://placehold.co/600x600/CFC6B6/1C1B19?font=playfair-display&text=The+Wool+Overcoat" alt="The Wool Overcoat" loading="lazy"></div>
+      <div class="swatch swatch-1"></div>
       <div class="card-info">
         <div>
           <h3>The Wool Overcoat</h3>
@@ -595,7 +573,7 @@
       </div>
     </div>
     <div class="card">
-      <div class="swatch swatch-2"><img src="https://placehold.co/600x600/D8D2C7/1C1B19?font=playfair-display&text=Silk+Drape+Shirt" alt="Silk Drape Shirt" loading="lazy"></div>
+      <div class="swatch swatch-2"></div>
       <div class="card-info">
         <div>
           <h3>Silk Drape Shirt</h3>
@@ -605,7 +583,7 @@
       </div>
     </div>
     <div class="card">
-      <div class="swatch swatch-3"><img src="https://placehold.co/600x600/BFB29C/1C1B19?font=playfair-display&text=Tapered+Wool+Trouser" alt="Tapered Wool Trouser" loading="lazy"></div>
+      <div class="swatch swatch-3"></div>
       <div class="card-info">
         <div>
           <h3>Tapered Wool Trouser</h3>
@@ -615,7 +593,7 @@
       </div>
     </div>
     <div class="card">
-      <div class="swatch swatch-4"><img src="https://placehold.co/600x600/C9BCA8/1C1B19?font=playfair-display&text=Cashmere+Crewneck" alt="Cashmere Crewneck" loading="lazy"></div>
+      <div class="swatch swatch-4"></div>
       <div class="card-info">
         <div>
           <h3>Cashmere Crewneck</h3>
@@ -625,7 +603,7 @@
       </div>
     </div>
     <div class="card">
-      <div class="swatch swatch-5"><img src="https://placehold.co/600x600/B8AC97/1C1B19?font=playfair-display&text=Structured+Tote" alt="Structured Tote" loading="lazy"></div>
+      <div class="swatch swatch-5"></div>
       <div class="card-info">
         <div>
           <h3>Structured Tote</h3>
@@ -635,7 +613,7 @@
       </div>
     </div>
     <div class="card">
-      <div class="swatch swatch-6"><img src="https://placehold.co/600x600/D1C7B6/1C1B19?font=playfair-display&text=Wide+Leg+Linen+Pant" alt="Wide Leg Linen Pant" loading="lazy"></div>
+      <div class="swatch swatch-6"></div>
       <div class="card-info">
         <div>
           <h3>Wide Leg Linen Pant</h3>
