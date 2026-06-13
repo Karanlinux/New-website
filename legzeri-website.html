@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legzeri — Considered Essentials</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F8F6F2;
+    --ink:#1C1B19;
+    --gold:#B08D57;
+    --sand:#D8D2C7;
+    --sand-light:#EFEBE3;
+    --sand-mid:#E3DED4;
+    --line:rgba(28,27,25,0.12);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Playfair Display',serif;
+    font-weight:500;
+    line-height:1.15;
+  }
+
+  /* ===== HEADER / NAV ===== */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(248,246,242,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+
+  .nav-inner{
+    max-width:1100px;
+    margin:0 auto;
+    padding:18px 20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+  }
+
+  .logo{
+    font-family:'Playfair Display',serif;
+    font-size:24px;
+    letter-spacing:0.32em;
+    font-weight:500;
+    opacity:0;
+    animation:fadeUp 1s ease forwards 0.1s;
+  }
+
+  nav{
+    display:flex;
+    gap:28px;
+    position:relative;
+  }
+
+  nav button{
+    background:none;
+    border:none;
+    font-family:'Inter',sans-serif;
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--ink);
+    opacity:0.55;
+    cursor:pointer;
+    padding:6px 2px 10px;
+    position:relative;
+    transition:opacity 0.3s ease;
+  }
+
+  nav button.active{
+    opacity:1;
+  }
+
+  nav button.active::after{
+    content:'';
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    height:1px;
+    background:var(--gold);
+    animation:slideIn 0.4s ease;
+  }
+
+  @keyframes slideIn{
+    from{transform:scaleX(0);}
+    to{transform:scaleX(1);}
+  }
+
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  /* ===== PAGES ===== */
+  .page{display:none; animation:fadeUp 0.6s ease;}
+  .page.active{display:block;}
+
+  /* ===== HOME ===== */
+  .hero{
+    max-width:1100px;
+    margin:0 auto;
+    padding:60px 24px 80px;
+    text-align:center;
+  }
+
+  .hero .eyebrow{
+    font-size:11px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:18px;
+    opacity:0;
+    animation:fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero h1{
+    font-size:42px;
+    margin-bottom:20px;
+    opacity:0;
+    animation:fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold);
+  }
+
+  .hero p{
+    max-width:420px;
+    margin:0 auto 32px;
+    font-size:15px;
+    line-height:1.8;
+    color:rgba(28,27,25,0.65);
+    opacity:0;
+    animation:fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  /* The "drape" — signature visual */
+  .drape{
+    margin:40px auto 36px;
+    width:100%;
+    max-width:340px;
+    height:220px;
+    border-radius:2px;
+    background:
+      linear-gradient(125deg, var(--sand-light) 0%, var(--sand-mid) 35%, var(--sand) 60%, var(--sand-light) 100%);
+    position:relative;
+    overflow:hidden;
+    opacity:0;
+    animation:fadeUp 1s ease forwards 0.5s;
+  }
+
+  .drape img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:0;
+  }
+
+  .drape::before, .drape::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    z-index:1;
+    background:repeating-linear-gradient(
+      100deg,
+      transparent 0px,
+      transparent 22px,
+      rgba(28,27,25,0.035) 23px,
+      transparent 24px
+    );
+  }
+
+  .drape::after{
+    background:repeating-linear-gradient(
+      170deg,
+      transparent 0px,
+      transparent 38px,
+      rgba(28,27,25,0.04) 39px,
+      transparent 41px
+    );
+  }
+
+  .drape-label{
+    position:absolute;
+    bottom:16px;
+    left:16px;
+    z-index:2;
+    font-size:10px;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--ink);
+    opacity:0.75;
+    background:rgba(248,246,242,0.85);
+    padding:4px 10px;
+  }
+
+  .btn{
+    display:inline-block;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    background:transparent;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    padding:16px 36px;
+    cursor:pointer;
+    transition:all 0.35s ease;
+    text-decoration:none;
+    opacity:0;
+    animation:fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .btn:hover{
+    background:var(--ink);
+    color:var(--ivory);
+  }
+
+  .pillars{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 24px 80px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:32px;
+    text-align:center;
+    border-top:1px solid var(--line);
+    padding-top:60px;
+  }
+
+  .pillars .pillar h3{
+    font-size:18px;
+    margin-bottom:10px;
+  }
+
+  .pillars .pillar p{
+    font-size:13px;
+    line-height:1.8;
+    color:rgba(28,27,25,0.6);
+    max-width:280px;
+    margin:0 auto;
+  }
+
+  .pillar-mark{
+    font-size:11px;
+    letter-spacing:0.2em;
+    color:var(--gold);
+    margin-bottom:10px;
+    display:block;
+  }
+
+  /* ===== SHOP ===== */
+  .section-head{
+    max-width:1100px;
+    margin:0 auto;
+    padding:56px 24px 32px;
+    text-align:center;
+  }
+
+  .section-head .eyebrow{
+    font-size:11px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+
+  .section-head h2{
+    font-size:32px;
+    margin-bottom:14px;
+  }
+
+  .section-head p{
+    font-size:14px;
+    line-height:1.8;
+    color:rgba(28,27,25,0.6);
+    max-width:420px;
+    margin:0 auto;
+  }
+
+  .grid{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 24px 80px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+
+  .card{
+    border:1px solid var(--line);
+    padding:0;
+    background:var(--sand-light);
+    overflow:hidden;
+  }
+
+  .swatch{
+    height:240px;
+    position:relative;
+  }
+
+  .swatch::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(
+      115deg,
+      transparent 0px,
+      transparent 26px,
+      rgba(28,27,25,0.04) 27px,
+      transparent 28px
+    );
+    pointer-events:none;
+  }
+
+  .swatch img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .swatch-1{background:linear-gradient(135deg,#E3DED4,#CFC6B6);}
+  .swatch-2{background:linear-gradient(135deg,#EFEBE3,#D8D2C7);}
+  .swatch-3{background:linear-gradient(135deg,#D9CFC0,#BFB29C);}
+  .swatch-4{background:linear-gradient(135deg,#E6E1D6,#C9BCA8);}
+  .swatch-5{background:linear-gradient(135deg,#DAD3C6,#B8AC97);}
+  .swatch-6{background:linear-gradient(135deg,#EDE8DE,#D1C7B6);}
+
+  .card-info{
+    padding:20px 22px 24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .card-info h3{
+    font-size:17px;
+    margin-bottom:4px;
+  }
+
+  .card-info .tag{
+    font-size:11px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:rgba(28,27,25,0.5);
+  }
+
+  .card-info .price{
+    font-family:'Playfair Display',serif;
+    font-size:16px;
+    color:var(--gold);
+    white-space:nowrap;
+  }
+
+  /* ===== ABOUT ===== */
+  .founder-photo{
+    max-width:320px;
+    margin:0 auto 50px;
+    padding:0 24px;
+  }
+
+  .founder-photo img{
+    width:100%;
+    display:block;
+    border:1px solid var(--line);
+    filter:grayscale(8%);
+  }
+
+  .about-body{
+    max-width:640px;
+    margin:0 auto;
+    padding:0 24px 80px;
+  }
+
+  .about-body p{
+    font-size:14px;
+    line-height:1.9;
+    color:rgba(28,27,25,0.7);
+    margin-bottom:22px;
+  }
+
+  .about-body .signoff{
+    font-family:'Playfair Display',serif;
+    font-style:italic;
+    font-size:18px;
+    color:var(--ink);
+    margin-top:30px;
+  }
+
+  .values{
+    max-width:640px;
+    margin:0 auto;
+    padding:0 24px 80px;
+    border-top:1px solid var(--line);
+    padding-top:40px;
+  }
+
+  .value-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .value-row:last-child{border-bottom:none;}
+
+  .value-row .label{
+    font-size:11px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+  }
+
+  .value-row .desc{
+    font-size:13px;
+    text-align:right;
+    color:rgba(28,27,25,0.6);
+    max-width:60%;
+  }
+
+  /* ===== CONTACT ===== */
+  .contact-wrap{
+    max-width:480px;
+    margin:0 auto;
+    padding:0 24px 90px;
+  }
+
+  .field{
+    margin-bottom:22px;
+  }
+
+  .field label{
+    display:block;
+    font-size:11px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:rgba(28,27,25,0.55);
+    margin-bottom:8px;
+  }
+
+  .field input, .field textarea{
+    width:100%;
+    border:none;
+    border-bottom:1px solid var(--line);
+    background:transparent;
+    padding:10px 2px;
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    color:var(--ink);
+    outline:none;
+    transition:border-color 0.3s ease;
+  }
+
+  .field input:focus, .field textarea:focus{
+    border-color:var(--gold);
+  }
+
+  .field textarea{resize:vertical; min-height:90px;}
+
+  .contact-info{
+    margin-top:44px;
+    padding-top:32px;
+    border-top:1px solid var(--line);
+    text-align:center;
+  }
+
+  .contact-info p{
+    font-size:13px;
+    line-height:2;
+    color:rgba(28,27,25,0.6);
+  }
+
+  .contact-info .gold{color:var(--gold);}
+
+  .form-msg{
+    margin-top:16px;
+    font-size:12px;
+    letter-spacing:0.1em;
+    color:var(--gold);
+    text-align:center;
+    display:none;
+  }
+
+  .form-msg.show{display:block;}
+
+  /* ===== FOOTER ===== */
+  footer{
+    border-top:1px solid var(--line);
+    text-align:center;
+    padding:32px 24px 44px;
+  }
+
+  footer .logo-mini{
+    font-family:'Playfair Display',serif;
+    letter-spacing:0.3em;
+    font-size:14px;
+    margin-bottom:10px;
+  }
+
+  footer p{
+    font-size:11px;
+    letter-spacing:0.05em;
+    color:rgba(28,27,25,0.4);
+  }
+
+  /* ===== RESPONSIVE (tablet/desktop) ===== */
+  @media(min-width:760px){
+    .nav-inner{flex-direction:row; justify-content:space-between;}
+    .hero h1{font-size:58px;}
+    .pillars{grid-template-columns:repeat(3,1fr);}
+    .grid{grid-template-columns:repeat(2,1fr);}
+  }
+
+  /* Respect reduced motion */
+  @media(prefers-reduced-motion: reduce){
+    *{animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="logo">LEGZERI</div>
+    <nav>
+      <button class="nav-btn active" data-page="home">Home</button>
+      <button class="nav-btn" data-page="shop">Shop</button>
+      <button class="nav-btn" data-page="about">About</button>
+      <button class="nav-btn" data-page="contact">Contact</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HOME ===== -->
+<main>
+<section class="page active" id="home">
+  <div class="hero">
+    <div class="eyebrow">Founded on Restraint</div>
+    <h1>Tailored stillness, <br><em>made to outlast trend.</em></h1>
+    <p>Legzeri designs considered essentials — cut for movement, sourced with care, and built to be worn long after the season ends.</p>
+
+    <div class="drape">
+      <img src="https://placehold.co/680x440/D8D2C7/1C1B19?font=playfair-display&text=Legzeri+%E2%80%94+Fall+Capsule" alt="Legzeri Fall Capsule preview" loading="lazy">
+      <div class="drape-label">The Fall Capsule — 06 Pieces</div>
+    </div>
+
+    <button class="btn" onclick="goTo('shop')">View the Collection</button>
+  </div>
+
+  <div class="pillars">
+    <div class="pillar">
+      <span class="pillar-mark">Material</span>
+      <h3>Honest Fabrics</h3>
+      <p>Wool, silk, linen, and cashmere — chosen for how they age, not just how they photograph.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-mark">Form</span>
+      <h3>Quiet Tailoring</h3>
+      <p>Clean lines and considered proportions, designed to move with you through every season.</p>
+    </div>
+    <div class="pillar">
+      <span class="pillar-mark">Pace</span>
+      <h3>Slow by Design</h3>
+      <p>Small batches, released with intention — fewer pieces, made to be kept.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SHOP ===== -->
+<section class="page" id="shop">
+  <div class="section-head">
+    <div class="eyebrow">The Collection</div>
+    <h2>Considered Essentials</h2>
+    <p>Six pieces, built from natural fibers, designed to pair effortlessly with everything you already own.</p>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <div class="swatch swatch-1"><img src="https://placehold.co/600x600/CFC6B6/1C1B19?font=playfair-display&text=The+Wool+Overcoat" alt="The Wool Overcoat" loading="lazy"></div>
+      <div class="card-info">
+        <div>
+          <h3>The Wool Overcoat</h3>
+          <div class="tag">Outerwear · Charcoal</div>
+        </div>
+        <div class="price">$480</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="swatch swatch-2"><img src="https://placehold.co/600x600/D8D2C7/1C1B19?font=playfair-display&text=Silk+Drape+Shirt" alt="Silk Drape Shirt" loading="lazy"></div>
+      <div class="card-info">
+        <div>
+          <h3>Silk Drape Shirt</h3>
+          <div class="tag">Tops · Ivory</div>
+        </div>
+        <div class="price">$185</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="swatch swatch-3"><img src="https://placehold.co/600x600/BFB29C/1C1B19?font=playfair-display&text=Tapered+Wool+Trouser" alt="Tapered Wool Trouser" loading="lazy"></div>
+      <div class="card-info">
+        <div>
+          <h3>Tapered Wool Trouser</h3>
+          <div class="tag">Bottoms · Sand</div>
+        </div>
+        <div class="price">$220</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="swatch swatch-4"><img src="https://placehold.co/600x600/C9BCA8/1C1B19?font=playfair-display&text=Cashmere+Crewneck" alt="Cashmere Crewneck" loading="lazy"></div>
+      <div class="card-info">
+        <div>
+          <h3>Cashmere Crewneck</h3>
+          <div class="tag">Knitwear · Oat</div>
+        </div>
+        <div class="price">$260</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="swatch swatch-5"><img src="https://placehold.co/600x600/B8AC97/1C1B19?font=playfair-display&text=Structured+Tote" alt="Structured Tote" loading="lazy"></div>
+      <div class="card-info">
+        <div>
+          <h3>Structured Tote</h3>
+          <div class="tag">Accessories · Taupe</div>
+        </div>
+        <div class="price">$340</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="swatch swatch-6"><img src="https://placehold.co/600x600/D1C7B6/1C1B19?font=playfair-display&text=Wide+Leg+Linen+Pant" alt="Wide Leg Linen Pant" loading="lazy"></div>
+      <div class="card-info">
+        <div>
+          <h3>Wide Leg Linen Pant</h3>
+          <div class="tag">Bottoms · Bone</div>
+        </div>
+        <div class="price">$195</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="page" id="about">
+  <div class="section-head">
+    <div class="eyebrow">Our Story</div>
+    <h2>Why Legzeri</h2>
+  </div>
+
+  <div class="founder-photo">
+    <img src="founder.jpg" alt="Founder of Legzeri">
+  </div>
+
+  <div class="about-body">
+    <p>Legzeri began with a simple frustration: too many wardrobes are full of clothes that look good for one season and fall apart the next. We wanted to build the opposite — a small set of pieces that feel as good in year three as they did on day one.</p>
+    <p>Every fabric is chosen first for how it wears over time. Every cut is tested against the way people actually move through their day — sitting, walking, reaching, packing a bag. Nothing is added that doesn't earn its place.</p>
+    <p>We work in small batches with a handful of mills and workshops we visit in person, because quality is easier to protect when the supply chain is short enough to see.</p>
+    <p class="signoff">— The Legzeri Studio</p>
+  </div>
+
+  <div class="values">
+    <div class="value-row">
+      <div class="label">Sourcing</div>
+      <div class="desc">Natural fibers from mills we've personally visited.</div>
+    </div>
+    <div class="value-row">
+      <div class="label">Production</div>
+      <div class="desc">Small batches, made on demand to limit waste.</div>
+    </div>
+    <div class="value-row">
+      <div class="label">Longevity</div>
+      <div class="desc">Repairs and alterations offered for the life of the garment.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="page" id="contact">
+  <div class="section-head">
+    <div class="eyebrow">Get in Touch</div>
+    <h2>Contact Legzeri</h2>
+    <p>Questions about an order, sizing, or working together — we read every message.</p>
+  </div>
+  <div class="contact-wrap">
+    <form onsubmit="handleSubmit(event)">
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" required></textarea>
+      </div>
+      <button type="submit" class="btn" style="opacity:1; animation:none;">Send Message</button>
+      <div class="form-msg" id="formMsg">Thank you — this is a local test form, no message was sent.</div>
+    </form>
+
+    <div class="contact-info">
+      <p>Email: <span class="gold">hello@legzeri.com</span></p>
+      <p>Studio: Open by appointment</p>
+      <p>Mon – Fri, 9am – 6pm</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="logo-mini">LEGZERI</div>
+  <p>&copy; 2026 Legzeri. Local test build.</p>
+</footer>
+
+<script>
+  function goTo(page){
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(page).classList.add('active');
+    document.querySelector(`.nav-btn[data-page="${page}"]`).classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => goTo(btn.dataset.page));
+  });
+
+  function handleSubmit(e){
+    e.preventDefault();
+    document.getElementById('formMsg').classList.add('show');
+    e.target.reset();
+  }
+</script>
+
+</body>
+</html>
